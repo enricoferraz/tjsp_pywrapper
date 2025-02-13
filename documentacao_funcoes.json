@@ -1,0 +1,3843 @@
+[
+  {
+    "nome": "agrupar_datas",
+    "descricao": "Subdivide as data em intervalos anuais, semestrais, trimestrais ou mensais.",
+    "parametros": [
+      {
+        "nome": "data_inicial",
+        "descricao": "Data inicial dd/mm/aaaa",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "data_final",
+        "descricao": "Data final dd/mm/aaaa",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "corte",
+        "descricao": "Informar se anual, semestral, trimestral ou mensal.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "formato",
+        "descricao": "Formato de retorno. Default para dd/mm/aaaa.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble com duas colunas com data inicial e final",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/agrupar_datas.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/agrupar_datas.R"
+    }
+  },
+  {
+    "nome": "ajustar_assuntos",
+    "descricao": "Ajustar os assuntos com base na tabela do TJSP",
+    "parametros": [
+      {
+        "nome": "df",
+        "descricao": "tibble obtido a partir da função organiza_dados_cpopg",
+        "tipo_r": "data.frame",
+        "tipo_python": "pandas.DataFrame"
+      },
+      {
+        "nome": "excluir_cartas",
+        "descricao": "default para TRUE. Excluir cartas de ordem e pracatórias. Se você optar por FALSE, verifique a compatibilidade entre o assunto e a area.",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "mesmo df com assuntos ajustados e áreas e subáreas acrescidas.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/ajustar_assuntos.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/ajustar_assuntos.R"
+    }
+  },
+  {
+    "nome": "assuntos",
+    "descricao": "Assuntos do TJSP",
+    "parametros": [],
+    "retorno": {
+      "descricao": "dataframe com 3614 obs e três colunas: area, assunto, assunto_",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/assuntos.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/assuntos.R"
+    }
+  },
+  {
+    "nome": "tjsp_autenticar",
+    "descricao": "Autenticar no tjsp",
+    "parametros": [
+      {
+        "nome": "login",
+        "descricao": "cpf",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "password",
+        "descricao": "senha",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Estabelece uma sessão, não é necessário salvar.",
+      "tipo_r": "NULL",
+      "tipo_python": "None"
+    },
+    "source": {
+      "arquivo": "R/tjsp_autenticar.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_autenticar.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_acordaos_cposg",
+    "descricao": "Baixa acórdãos do Tribunal de Justiça de São Paulo a partir do andamento",
+    "parametros": [
+      {
+        "nome": "processos",
+        "descricao": "vetor com o número do processo com ou sem os separadores",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório. Default para o corrente.",
+        "tipo_r": "default",
+        "tipo_python": "Any"
+      }
+    ],
+    "retorno": {
+      "descricao": "tabela com metadados do pdf e pdf do acórdão baixado com data do acordao e número do processo.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_acordaos_cposg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_acordaos_cposg.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_cjpg",
+    "descricao": "Baixa julgados de primeiro grau de São Paulo",
+    "parametros": [
+      {
+        "nome": "livre",
+        "descricao": "Busca livre. Usar os mesmos critérios da página.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "aspas",
+        "descricao": "Lógico. Coloque TRUE se quiser colocar aspas nas busca livre.",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "processo",
+        "descricao": "Número do processo unificado. Pode colocar com pontos ou sem pontos.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "foro",
+        "descricao": "Número do fórum",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "vara",
+        "descricao": "Número da vara",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "classe",
+        "descricao": "Número da classe processual",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "assunto",
+        "descricao": "Número do assunto",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "magistrado",
+        "descricao": "Código do magistrado",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "inicio",
+        "descricao": "Data inicial no formato \"dd/mm/aaa\"",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "fim",
+        "descricao": "Data final no formato \"dd/mm/aaaa\" O lapso entre essas duas datas não deve passar de um ano.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde serão armazenados os htmls.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "paginas",
+        "descricao": "Páginas a serem baixadas",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      }
+    ],
+    "retorno": {
+      "descricao": "Baixa os htmls com metadados das decisãoes de primeiro grau.",
+      "tipo_r": "NULL",
+      "tipo_python": "None"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cjpg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cjpg.R"
+    }
+  },
+  {
+    "nome": "baixar_municipios",
+    "descricao": "Baixa municípios do interior de São Paulo com respectivos fóruns",
+    "parametros": [
+      {
+        "nome": "numeros",
+        "descricao": "Sequência numérica",
+        "tipo_r": "integer",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Onde armazenar os htms",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "htm",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/baixar_municipios.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/baixar_municipios.R"
+    }
+  },
+  {
+    "nome": "baixar_publicacoes_dje",
+    "descricao": "Baixar todas as publicações do dje São Paulo.",
+    "parametros": [
+      {
+        "nome": "processo",
+        "descricao": "número do processo com ou sem pontos e hífen.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "default para o diretório atual.",
+        "tipo_r": "default",
+        "tipo_python": "Any"
+      }
+    ],
+    "retorno": {
+      "descricao": "publicações em html",
+      "tipo_r": "list",
+      "tipo_python": "list"
+    },
+    "source": {
+      "arquivo": "R/baixar_publicacoes_dje.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/baixar_publicacoes_dje.R"
+    }
+  },
+  {
+    "nome": "cjpg_table",
+    "descricao": "Extrai assuntos e classes",
+    "parametros": [
+      {
+        "nome": "tipo",
+        "descricao": "classe ou assunto",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble com classe ou assunto",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/cjpg_table.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/cjpg_table.R"
+    }
+  },
+  {
+    "nome": "classificar_recurso",
+    "descricao": "Classifica acórdãos",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "data.frame com a coluna a ser classificada",
+        "tipo_r": "data.frame",
+        "tipo_python": "pandas.DataFrame"
+      },
+      {
+        "nome": "dispositivo",
+        "descricao": "Coluna onde se encontram os dispositivos do acórdão",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "decisao",
+        "descricao": "Nome da coluna a ser criada com a decisão",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "inteiro_teor",
+        "descricao": "Colocar TRUE se a coluna conter o inteiro teor",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "x adicionado da coluna decisão.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/classificar_recurso.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/classificar_recurso.R"
+    }
+  },
+  {
+    "nome": "tjsp_classificar_recurso",
+    "descricao": "Classifica recursos",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "vetor de julgados",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      }
+    ],
+    "retorno": {
+      "descricao": "decisão",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_classificar_recurso.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_classificar_recurso.R"
+    }
+  },
+  {
+    "nome": "tjsp_classificar_sentenca",
+    "descricao": "Classifica decisões de primeiro grau",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "vetor de sentenças",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      }
+    ],
+    "retorno": {
+      "descricao": "decisão",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_classificar_sentenca.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_classificar_sentenca.R"
+    }
+  },
+  {
+    "nome": "tjsp_classificar_writ",
+    "descricao": "Classificar writs(HC, MS, revisão criminal)",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "Texto da decisão",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "classificação",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_classificar_writ.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_classificar_writ.R"
+    }
+  },
+  {
+    "nome": "cnj_sequencial",
+    "descricao": "Creates cnj sequence numbers",
+    "parametros": [
+      {
+        "nome": "inicio",
+        "descricao": "integer",
+        "tipo_r": "integer",
+        "tipo_python": "int"
+      },
+      {
+        "nome": "fim",
+        "descricao": "integer",
+        "tipo_r": "integer",
+        "tipo_python": "int"
+      },
+      {
+        "nome": "ano",
+        "descricao": "year",
+        "tipo_r": "integer",
+        "tipo_python": "int"
+      },
+      {
+        "nome": "segmento",
+        "descricao": "integer",
+        "tipo_r": "integer",
+        "tipo_python": "int"
+      },
+      {
+        "nome": "uf",
+        "descricao": "federative unity.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "distribuidor",
+        "descricao": "code of the court.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "vector of lawsuit numbers",
+      "tipo_r": "list",
+      "tipo_python": "list"
+    },
+    "source": {
+      "arquivo": "R/cnj_sequencial.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/cnj_sequencial.R"
+    }
+  },
+  {
+    "nome": "codigos",
+    "descricao": "Códigos dos distribuidores do Tribunal de Justiça de São Paulo",
+    "parametros": [],
+    "retorno": {
+      "descricao": "A data frame com 388 linhas e 5 variáveis.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/codigos.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/codigos.R"
+    }
+  },
+  {
+    "nome": "codigos2",
+    "descricao": "Códigos dos distribuidores do Tribunal de Justiça de São Paulo",
+    "parametros": [],
+    "retorno": {
+      "descricao": "A data frame com 443 linhas e 2 variáveis: distribuidor e descricao.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/codigos2.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/codigos2.R"
+    }
+  },
+  {
+    "nome": "excluir_classes_cpopg",
+    "descricao": "Excluir classes",
+    "parametros": [],
+    "retorno": {
+      "descricao": "character with suggestions classes to remove",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/excluir_classes_cpopg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/excluir_classes_cpopg.R"
+    }
+  },
+  {
+    "nome": "filtrar_cjsg",
+    "descricao": "Filtra base cjsg por assunto e classe.",
+    "parametros": [
+      {
+        "nome": "base",
+        "descricao": "base parseada dos cjsg htmls",
+        "tipo_r": "data.frame",
+        "tipo_python": "pandas.DataFrame"
+      },
+      {
+        "nome": "assunto",
+        "descricao": "regex do assunto a ser filtrado",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "classe",
+        "descricao": "regex da classe a ser filtrada",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "negate_assunto",
+        "descricao": "coloque TRUE se quiser excluir os assuntos especificados.",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "Mesma base filtrada.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/filtrar_cjsg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/filtrar_cjsg.R"
+    }
+  },
+  {
+    "nome": "formatar_arquivo",
+    "descricao": "Função para criar o nome do arquivo",
+    "parametros": [
+      {
+        "nome": "inicio",
+        "descricao": "data inicial julgamento",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "fim",
+        "descricao": "Data final julgamento",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "inicio_pb",
+        "descricao": "data inicial registro/publicação",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "fim_pb",
+        "descricao": "data final registr/publicacao",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "pagina",
+        "descricao": "página",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "diretorio",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Arquivo",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cjsg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cjsg.R"
+    }
+  },
+  {
+    "nome": "fuzzy_search",
+    "descricao": "Procura a palavra ou frase do segundo vetor que melhor se aproxima do primeiro. Particularmente útil para comparar nomes de municípios.",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "Vetor de strings supostamente erradas",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "y",
+        "descricao": "Vetor de strings suportamente corretas",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      }
+    ],
+    "retorno": {
+      "descricao": "vetor com as strings de y próximos de x.",
+      "tipo_r": "list",
+      "tipo_python": "list"
+    },
+    "source": {
+      "arquivo": "R/fuzzy_search.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/fuzzy_search.R"
+    }
+  },
+  {
+    "nome": "ggdecisao",
+    "descricao": "Plota distribuição das decisões conforme a câmara e o recorrente",
+    "parametros": [
+      {
+        "nome": "data",
+        "descricao": "dataframe",
+        "tipo_r": "data.frame",
+        "tipo_python": "pandas.DataFrame"
+      },
+      {
+        "nome": "title",
+        "descricao": "Título do gráfico",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "x",
+        "descricao": "orgao julgador, geralmente a câmara",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "facet",
+        "descricao": "facetas para facet_grid, geralmente o recorrente",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "fill",
+        "descricao": "preenchimento, geralmente a decisão",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "ordered",
+        "descricao": "se verdadeiro irá extrair somente os números e as siglas e ordená-la adequadaemente.",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "x_label",
+        "descricao": "etiqueta para órgão julgador, geralmente \"câmara\"",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "y_label",
+        "descricao": "etiqueta para número de casos, geralmente \"número de decisões\"",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "legend",
+        "descricao": "título da legenda",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "caption",
+        "descricao": "indicação da fonte",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "ggplot",
+      "tipo_r": "function",
+      "tipo_python": "Callable"
+    },
+    "source": {
+      "arquivo": "R/ggdecisao.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/ggdecisao.R"
+    }
+  },
+  {
+    "nome": "imoveis",
+    "descricao": "imoveis do TJSP inclusive comarca e latlong",
+    "parametros": [],
+    "retorno": {
+      "descricao": "Dataframe com 751 linhas e 15 variáveis.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/imoveis.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/imoveis.R"
+    }
+  },
+  {
+    "nome": "is_pdf",
+    "descricao": "Verifica se um arquivo é pdf (vetorizado)",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      }
+    ],
+    "retorno": {
+      "descricao": "Valor lógico",
+      "tipo_r": "logical",
+      "tipo_python": "bool"
+    },
+    "source": {
+      "arquivo": "R/tjsp_combinar_docs.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_combinar_docs.R"
+    }
+  },
+  {
+    "nome": "is_pdf1",
+    "descricao": "Verifica se um arquivo é pdf (não vetorizado)",
+    "parametros": [
+      {
+        "nome": "arquivo",
+        "descricao": "Suposto pdf a ser verificado",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Valor lógico",
+      "tipo_r": "logical",
+      "tipo_python": "bool"
+    },
+    "source": {
+      "arquivo": "R/tjsp_combinar_docs.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_combinar_docs.R"
+    }
+  },
+  {
+    "nome": "lapso",
+    "descricao": "Retorna o lapso temporal na unidade especificada entre duas datas.",
+    "parametros": [
+      {
+        "nome": "data_inicial",
+        "descricao": "data inicial",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "data_final",
+        "descricao": "data final",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "unidade",
+        "descricao": "ano, mes, semana ou dia.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "double com o lapso temporal",
+      "tipo_r": "numeric",
+      "tipo_python": "float"
+    },
+    "source": {
+      "arquivo": "R/lapso.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/lapso.R"
+    }
+  },
+  {
+    "nome": "latlong_comarca",
+    "descricao": "Encontra latlong das comarcas",
+    "parametros": [
+      {
+        "nome": "df",
+        "descricao": "tibble com nomes das comarcas.",
+        "tipo_r": "data.frame",
+        "tipo_python": "pandas.DataFrame"
+      }
+    ],
+    "retorno": {
+      "descricao": "mesma tibble com latlongs",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/latlong_comarca.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/latlong_comarca.R"
+    }
+  },
+  {
+    "nome": "ler_acordaos",
+    "descricao": "Lê pdfs dos acórdãos, remove assinatura e eventualmente combina",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Arquivos onde se encontram os pdfs",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde se encontram os pdfs (alternativa a arquivos)",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "remover_assinatura",
+        "descricao": "Padrão para FALSE",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "combinar",
+        "descricao": "Default para TRUE juntar todas as páginas em um único texto.",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "Tibble com data do acórdão, processo e texto",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/ler_acordaos.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/ler_acordaos.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_cjsg",
+    "descricao": "Ler metadados das decisões",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Caminhos para os htmls",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde se encontram os htmls, se arquivos for NULL.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tabela com metadados jurisprudenciais.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_cjsg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_cjsg.R"
+    }
+  },
+  {
+    "nome": "ler_dados_cpopg",
+    "descricao": "Lê os metadados de processos de primeira instância.",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Opcional. Informar se não informar o diretório",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde se encontram os htmls.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "wide",
+        "descricao": "o padrão é o formado longo, com apenas quatro colunas: processo, digital, variavel, valor.",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble com os metadados",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/ler_dados_cpopg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/ler_dados_cpopg.R"
+    }
+  },
+  {
+    "nome": "ler_dados_cposg2",
+    "descricao": "Lê dados cposg, em uma das interfaces.",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório, quando arquivos não informados.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "dataframe",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/ler_dados_cposg2.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/ler_dados_cposg2.R"
+    }
+  },
+  {
+    "nome": "ler_decisoes",
+    "descricao": "Ler decisoes",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Caminho para os htmls baixados. Se NULL, usar diretório",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde se encontram os htmls baixados",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble com as os numéros dos processos e respectivas decisões",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/ler_decisoes.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/ler_decisoes.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_decisoes_cposg",
+    "descricao": "Lê o dispositivo das decisões de segunda instância a partir dos htmls",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Informar arquivos ou diretório.",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde se encontram os htmls baixados",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble com as os numéros dos processos e respectivos dispositivos",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/ler_decisoes_cposg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/ler_decisoes_cposg.R"
+    }
+  },
+  {
+    "nome": "ler_decisoes_monocraticas",
+    "descricao": "Lê conteúdo das decisões monocráticas",
+    "parametros": [
+      {
+        "nome": "diretorio",
+        "descricao": "objeto ou diretório onde se encontram os htmls.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble com o número do processo, o texto da decisão e a data da decisão.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/ler_decisoes_monocraticas.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/ler_decisoes_monocraticas.R"
+    }
+  },
+  {
+    "nome": "ler_despacho",
+    "descricao": "Extrai despachos judiciais, que podem incluir decisões monocráticas, da movimentação.",
+    "parametros": [
+      {
+        "nome": "fonte",
+        "descricao": "objeto ou diretório onde se encontram os htmls.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble com o número do processo, o despacho e a data do despacho.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/ler_despachos.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/ler_despachos.R"
+    }
+  },
+  {
+    "nome": "ler_entrada",
+    "descricao": "Data da entrada do processo",
+    "parametros": [
+      {
+        "nome": "diretorio",
+        "descricao": "objeto ou diretório onde se encontram os htmls dos processos",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble com o número dos processos e respectivas decisões",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/ler_entrada.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/ler_entrada.R"
+    }
+  },
+  {
+    "nome": "ler_municipios",
+    "descricao": "Lê municípios e respectivos fóruns baixados com baixar_municipios",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Alternativamente informar diretório",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/ler_municipios.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/ler_municipios.R"
+    }
+  },
+  {
+    "nome": "mni_base64_doc",
+    "descricao": "Converte documentos em base 64 para pdf.",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "dir_origem",
+        "descricao": "Alternativamente informar origem",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "dir_destino",
+        "descricao": "Diretório destino.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "pdfs",
+      "tipo_r": "list",
+      "tipo_python": "list"
+    },
+    "source": {
+      "arquivo": "R/mni_base64_doc.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/mni_base64_doc.R"
+    }
+  },
+  {
+    "nome": "mni_combinar_docs",
+    "descricao": "Combina docs baixados com a partir de mni_base64_docs",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "dir_origem",
+        "descricao": "Diretório de origem, se não informar arquivos",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "dir_destino",
+        "descricao": "Diretório destino",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "nivel",
+        "descricao": "Juntar processo inteiro ou por documento?",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      }
+    ],
+    "retorno": {
+      "descricao": "único pdf",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/mni_combinar_docs.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/mni_combinar_docs.R"
+    }
+  },
+  {
+    "nome": "mni_consultar_processo",
+    "descricao": "Consulta dados processuais pelo Modelo de interoperabilidade (MNI)",
+    "parametros": [
+      {
+        "nome": "tribunal",
+        "descricao": "Padrão \"tjsp\"",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "usuario",
+        "descricao": "Informar usuario ou variável de ambiente TJSPMNIUSUARIO",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "senha",
+        "descricao": "Informar senha ou variável de ambiente TJSPMNISENHA",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "processo",
+        "descricao": "Processo (número único CNJ)",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "cabecalho",
+        "descricao": "TRUE para pegar cabeçalho",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "movimentos",
+        "descricao": "TRUE para pegar movimentacao",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "incluir_documentos",
+        "descricao": "TRUE para pegar documentos.",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "documentos",
+        "descricao": "Vetor de ids dos documentos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "xmls",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/mni_consultar_processo.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/mni_consultar_processo.R"
+    }
+  },
+  {
+    "nome": "mni_ler_dados_basicos",
+    "descricao": "Lê dados básicos xml mni",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de xmls",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Alternativamente informar diretório.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/mni_ler_dados_basicos.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/mni_ler_dados_basicos.R"
+    }
+  },
+  {
+    "nome": "mni_ler_partes",
+    "descricao": "Lê informações das partes do xml baixado com mni_consultar_processo",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos xml.",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Alternativamente informar o diretório.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/mni_ler_partes.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/mni_ler_partes.R"
+    }
+  },
+  {
+    "nome": "mni_listar_documentos",
+    "descricao": "Listar documentos com respectivos códigos",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Alternativamente informar diretório",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/mni_listar_documentos.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/mni_listar_documentos.R"
+    }
+  },
+  {
+    "nome": "municipios",
+    "descricao": "Municípios de São Paulo e respectivos fóruns",
+    "parametros": [],
+    "retorno": {
+      "descricao": "Dataframe com 725 linhas e 3 variáveis: código da url para obter o dado, Município, Fórum",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/municipios.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/municipios.R"
+    }
+  },
+  {
+    "nome": "numero",
+    "descricao": "Converte valor da ação para número ou qualquer outra string.",
+    "parametros": [
+      {
+        "nome": "str",
+        "descricao": "vetor de strings",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "mesmo vetor porém numérico.",
+      "tipo_r": "numeric",
+      "tipo_python": "float"
+    },
+    "source": {
+      "arquivo": "R/numero.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/numero.R"
+    }
+  },
+  {
+    "nome": "ordenar_camaras",
+    "descricao": "Limpa e ordena câmaras de direito",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "Vetor de câmaras",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      }
+    ],
+    "retorno": {
+      "descricao": "Mesmo vetor convertido em fator e ordenado da primeira à última câmara",
+      "tipo_r": "list",
+      "tipo_python": "list"
+    },
+    "source": {
+      "arquivo": "R/ordena_camaras.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/ordena_camaras.R"
+    }
+  },
+  {
+    "nome": "pontuar_cnj",
+    "descricao": "Pontuar número do CNJ",
+    "parametros": [
+      {
+        "nome": "numero",
+        "descricao": "Número pontuado ou não",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      }
+    ],
+    "retorno": {
+      "descricao": "Número pontuado",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/pontuar_cnj.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/pontuar_cnj.R"
+    }
+  },
+  {
+    "nome": "remover_acentos",
+    "descricao": "Remove acentos",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "vetor de caracteres",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "mesmo vetor com acentos removidos",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/remover_acentos.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/remover_acentos.R"
+    }
+  },
+  {
+    "nome": "remover_assinatura",
+    "descricao": "Remove texto com assinatura eletrônica",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "vetor de textos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      }
+    ],
+    "retorno": {
+      "descricao": "vetor de textos sem assinatura",
+      "tipo_r": "list",
+      "tipo_python": "list"
+    },
+    "source": {
+      "arquivo": "R/remover_assinatura.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/remover_assinatura.R"
+    }
+  },
+  {
+    "nome": "remover_assinatura_cjpg",
+    "descricao": "Remove assinutura das sentencas",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "Texto",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Texto com assinaturas removidas",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/remover_assinatura_cjpg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/remover_assinatura_cjpg.R"
+    }
+  },
+  {
+    "nome": "rm_duplicados",
+    "descricao": "Remove as linhas de um dataframe, quando há duplicidade na coluna especificada.",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "data.frame",
+        "tipo_r": "data.frame",
+        "tipo_python": "pandas.DataFrame"
+      },
+      {
+        "nome": "y",
+        "descricao": "coluna com células a serem identificadas como duplicadas.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Um dataframe sem as linhas duplicadas na coluna especificada.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/rm_duplicados.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/rm_duplicados.R"
+    }
+  },
+  {
+    "nome": "tjsp",
+    "descricao": "Baixa  e organiza decisões do TJSP",
+    "parametros": [],
+    "retorno": {
+      "descricao": "Retorna um objeto que contém as decisões organizadas do TJSP.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp.R"
+    }
+  },
+  {
+    "nome": "tjsp",
+    "descricao": "Baixa  e organiza decisões do TJSP",
+    "parametros": [],
+    "retorno": {
+      "descricao": "Retorna um objeto que contém as decisões organizadas do TJSP.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp.R"
+    }
+  },
+  {
+    "nome": "tjsp_api_ler",
+    "descricao": "Lê dados da api",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_api_ler.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_api_ler.R"
+    }
+  },
+  {
+    "nome": "tjsp_autenticar",
+    "descricao": "Autenticar no tjsp",
+    "parametros": [
+      {
+        "nome": "login",
+        "descricao": "cpf",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "password",
+        "descricao": "senha",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Estabelece uma sessão, não é necessário salvar.",
+      "tipo_r": "NULL",
+      "tipo_python": "None"
+    },
+    "source": {
+      "arquivo": "R/tjsp_autenticar.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_autenticar.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_acordaos_cjsg",
+    "descricao": "Baixar acórdãos do TJSP a partir do id (cdacordo)",
+    "parametros": [
+      {
+        "nome": "cdacordao",
+        "descricao": "Id do acórdão",
+        "tipo_r": "integer",
+        "tipo_python": "int"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "pdf",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_acordaos_cjsg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_acordaos_cjsg.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_acordaos_cposg",
+    "descricao": "Baixa acórdãos do Tribunal de Justiça de São Paulo a partir do andamento",
+    "parametros": [
+      {
+        "nome": "processos",
+        "descricao": "vetor com o número do processo com ou sem os separadores",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório. Default para o corrente.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tabela com metadados do pdf e pdf do acórdão baixado com data do acordao e número do processo.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_acordaos_cposg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_acordaos_cposg.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_acordaos_cposg2",
+    "descricao": "Baixa acórdãos do Tribunal de Justiça de São Paulo a partir do andamento",
+    "parametros": [
+      {
+        "nome": "processos",
+        "descricao": "vetor com o número do processo com ou sem os separadores",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório. Default para o corrente.",
+        "tipo_r": "default",
+        "tipo_python": "Any"
+      }
+    ],
+    "retorno": {
+      "descricao": "tabela com metadados do pdf e pdf do acórdão baixado com data do acordao e número do processo.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_acordaos_cposg2.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_acordaos_cposg2.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_cjpg",
+    "descricao": "Baixa julgados de primeiro grau de São Paulo",
+    "parametros": [
+      {
+        "nome": "livre",
+        "descricao": "Busca livre. Usar os mesmos critérios da página.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "aspas",
+        "descricao": "Lógico. Coloque TRUE se quiser colocar aspas nas busca livre.",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "processo",
+        "descricao": "Número do processo unificado. Pode colocar com pontos ou sem pontos.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "foro",
+        "descricao": "Número do fórum",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "vara",
+        "descricao": "Número da vara",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "classe",
+        "descricao": "Número da classe processual",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "assunto",
+        "descricao": "Número do assunto",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "magistrado",
+        "descricao": "Código do magistrado",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "inicio",
+        "descricao": "Data inicial no formato \"dd/mm/aaa\"",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "fim",
+        "descricao": "Data final no formato \"dd/mm/aaaa\" O lapso entre essas duas datas não deve passar de um ano.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde serão armazenados os htmls.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "paginas",
+        "descricao": "Páginas a serem baixadas",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      }
+    ],
+    "retorno": {
+      "descricao": "Baixa os htmls com metadados das decisãoes de primeiro grau.",
+      "tipo_r": "NULL",
+      "tipo_python": "None"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cjpg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cjpg.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_cjpg_processo",
+    "descricao": "Baixa processo da consulta do cjpg",
+    "parametros": [
+      {
+        "nome": "processo",
+        "descricao": "número do processo",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "diretório",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "html",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cjpg_processo.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cjpg_processo.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_cjsg",
+    "descricao": "Baixa consulta jurisprudencial do TJSP",
+    "parametros": [
+      {
+        "nome": "livre",
+        "descricao": "palavra ou texto a ser buscado nas ementas e nos acórdãos",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "ementa",
+        "descricao": "palavra ou texto a ser buscado apenas nas ementas",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "processo",
+        "descricao": "Número do processo",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "aspas",
+        "descricao": "lógico. Colocar a expressão entre aspas?",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "classe",
+        "descricao": "Código da classe processual",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "assunto",
+        "descricao": "Código do assunto",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "orgao_julgador",
+        "descricao": "Código do órgão julgador",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "inicio",
+        "descricao": "data inicial julgamento",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "fim",
+        "descricao": "Data final julgamento",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "inicio_pb",
+        "descricao": "data inicial registro/publicação",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "fim_pb",
+        "descricao": "data final registr/publicacao",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "comarca",
+        "descricao": "Código da comarca. Uma por vez.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "sg",
+        "descricao": "\"T\" para origem segundo grau",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "cr",
+        "descricao": "\"R\" para origem colégio recursal",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "tipo",
+        "descricao": "\"A\" Para acórdãos, \"D\" para decisões monocráticas",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "n",
+        "descricao": "Número de páginas",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde serão armazenadas as páginas html",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "baixa os htmls das decisões de segunda instância",
+      "tipo_r": "NULL",
+      "tipo_python": "None"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cjsg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cjsg.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_cjsg1",
+    "descricao": "Qualquer data",
+    "parametros": [
+      {
+        "nome": "livre",
+        "descricao": "palavra ou texto a ser buscado nas ementas e nos acórdãos",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "ementa",
+        "descricao": "palavra ou texto a ser buscado apenas nas ementas",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "processo",
+        "descricao": "Número do processo",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "classe",
+        "descricao": "Código da classe processual",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "assunto",
+        "descricao": "Código do assunto",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "orgao_julgador",
+        "descricao": "Código do órgão julgador",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "inicio",
+        "descricao": "data inicial julgamento",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "fim",
+        "descricao": "Data final julgamento",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "inicio_pb",
+        "descricao": "data inicial registro/publicação",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "fim_pb",
+        "descricao": "data final registr/publicacao",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "comarca",
+        "descricao": "Código da comarca. Uma por vez.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "sg",
+        "descricao": "\"T\" para origem segundo grau",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "cr",
+        "descricao": "\"R\" para origem colégio recursal",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "tipo",
+        "descricao": "\"A\" Para acórdãos, \"D\" para decisões monocráticas",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "n",
+        "descricao": "Número de páginas",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde serão armazenadas as páginas html",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "aspas",
+        "descricao": "lógico. Colocar a expressão entre aspas?",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "htmls",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cjsg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cjsg.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_cpopg",
+    "descricao": "Baixar consulta processual de primeiro grau",
+    "parametros": [
+      {
+        "nome": "processos",
+        "descricao": "Número do processo (cnj)",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "sono",
+        "descricao": "Tempo em segundos entre requisições.",
+        "tipo_r": "integer",
+        "tipo_python": "int"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde serão armazenados os htmls",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "html com dados processuais",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cpopg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cpopg.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_cpopg_cd_processo",
+    "descricao": "Baixa dados processuais com base no código do processo",
+    "parametros": [
+      {
+        "nome": "cd_processo",
+        "descricao": "Código do processo. Possivelmente, a coluna cd_doc do cjpg obtida com tjsp_ler_cjpg pode ser usada.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde armazenar os arquivos.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "htmls",
+      "tipo_r": "list",
+      "tipo_python": "list"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cpopg_cd_processo.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cpopg_cd_processo.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_cpopg_docs",
+    "descricao": "Baixar petições e docs a partir da tabela lida com tjsp_ler_tabela_docs",
+    "parametros": [
+      {
+        "nome": "df",
+        "descricao": "dataframe com colunas processo, id_doc e url_doc",
+        "tipo_r": "data.frame",
+        "tipo_python": "pandas.DataFrame"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "pdfs",
+      "tipo_r": "list",
+      "tipo_python": "list"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cpopg_docs.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cpopg_docs.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_cpopg_par",
+    "descricao": "Busca os números de processos no primeiro grau no parametro especificado",
+    "parametros": [
+      {
+        "nome": "consulta",
+        "descricao": "Valor da consulta",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "parametro",
+        "descricao": "Uma dessas: \"NUMOAB\", \"NMPARTE\", \"DOCPARTE\"",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "distribuidor",
+        "descricao": "Informar código do distribuidor. Você pode obtê-los com `tjsp_varas()`",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Informar diretorio onde armazenar os htmls",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "htmls",
+      "tipo_r": "list",
+      "tipo_python": "list"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cpopg_par.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cpopg_par.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_cposg",
+    "descricao": "Baixar processos de segunda instância do tjsp",
+    "parametros": [
+      {
+        "nome": "processos",
+        "descricao": "processos de segunda instância",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "diretório",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "html com dados processuais",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cposg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cposg.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_docs",
+    "descricao": "Função interna do tjsp_baixar_cpopg_docs",
+    "parametros": [
+      {
+        "nome": "processos",
+        "descricao": "Número do processo",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "id_doc",
+        "descricao": "Id do documento",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "pagina",
+        "descricao": "Pagina",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "urls",
+        "descricao": "Urls dos documentos",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      }
+    ],
+    "retorno": {
+      "descricao": "pdfs",
+      "tipo_r": "NULL",
+      "tipo_python": "None"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cpopg_docs.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cpopg_docs.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_docs_cd_processo",
+    "descricao": "Baixar petições e docs a partir da tabela lida com tjsp_ler_tabela_docs",
+    "parametros": [
+      {
+        "nome": "df",
+        "descricao": "dataframe com colunas processo, id_doc e url_doc",
+        "tipo_r": "data.frame",
+        "tipo_python": "pandas.DataFrame"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "pdfs",
+      "tipo_r": "list",
+      "tipo_python": "list"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cpopg_docs_cd_processo.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cpopg_docs_cd_processo.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_docs_cd_processo1",
+    "descricao": "Função interna do tjsp_baixar_cpopg_docs",
+    "parametros": [
+      {
+        "nome": "cd_processo",
+        "descricao": "Número do processo",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "id_doc",
+        "descricao": "Id do documento",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "pagina_inicial",
+        "descricao": "Pagina",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "urls",
+        "descricao": "Urls dos documentos",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      }
+    ],
+    "retorno": {
+      "descricao": "pdfs",
+      "tipo_r": "NULL",
+      "tipo_python": "None"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cpopg_docs_cd_processo.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cpopg_docs_cd_processo.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_doc_movimentacao",
+    "descricao": "Baixa documentos da movimentação a partir da url",
+    "parametros": [
+      {
+        "nome": "urls",
+        "descricao": "Vetor de urls",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Informar diretório onde armazenar o pdf",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "PDF",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_doc_movimentacao.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_doc_movimentacao.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_inicial",
+    "descricao": "Baixa petição inicial, ajuizamento (jec) ou denúncia",
+    "parametros": [
+      {
+        "nome": "processo",
+        "descricao": "Número do processo",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde armazenar a inicial",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "PDF?",
+      "tipo_r": "NULL",
+      "tipo_python": "None"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_inicial.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_inicial.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_intimacoes",
+    "descricao": "Coleta intimações do TJSP",
+    "parametros": [
+      {
+        "nome": "cd_foro",
+        "descricao": "Código do Foro",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "cd_instancia",
+        "descricao": "Código da instância. Padrão: 1",
+        "tipo_r": "integer",
+        "tipo_python": "int"
+      },
+      {
+        "nome": "cd_vara",
+        "descricao": "Código da vara.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "dt_inicio",
+        "descricao": "Data do início no formato \"dd/mm/aaaa\". Se não informada, usa a data de hoje.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "dt_fim",
+        "descricao": "Data do fim no formato \"dd/mm/aaaa\". Se não informada, uda a data de hoje.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "situacao",
+        "descricao": "Opções: \"cumprida\", \"pendente\" ou \"ambas\". Padrão para \"ambas\".",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "natureza_comunicacao",
+        "descricao": "Opções: \"intimação\", \"citação\" ou \"ambas\". Padrão para \"ambas\".",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "versao",
+        "descricao": "Pode ser csv ou xml. Padrão para csv.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "intervalo",
+        "descricao": "Padrão para trimestral, ou seja, máximo.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Padrão \".\", ou seja, o atual.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "xml",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_intimacoes.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_intimacoes.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_intimacoes_csv",
+    "descricao": "Coleta intimações do TJSP",
+    "parametros": [
+      {
+        "nome": "cd_foro",
+        "descricao": "Código do Foro",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "cd_instancia",
+        "descricao": "Código da instância. Padrão: 1",
+        "tipo_r": "integer",
+        "tipo_python": "int"
+      },
+      {
+        "nome": "cd_vara",
+        "descricao": "Código da vara.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "dt_inicio",
+        "descricao": "Data do início no formato \"dd/mm/aaaa\"",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "dt_fim",
+        "descricao": "Data do fim no formato \"dd/mm/aaaa\"",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "situacao",
+        "descricao": "Opções: \"cumprida\", \"pendente\" ou \"ambas\". Padrão para \"ambas\".",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "natureza_comunicacao",
+        "descricao": "Opções: \"intimação\", \"citação\" ou \"ambas\". Padrão para \"ambas\".",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "intervalo",
+        "descricao": "Padrão para semestral. Pode ser mensal também.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Padrão \".\", ou seja, o atual.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "csv",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_intimacoes_csv.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_intimacoes_csv.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_partes_docs",
+    "descricao": "Baixa informações sobre as partes",
+    "parametros": [
+      {
+        "nome": "cd_processo",
+        "descricao": "Vetor com os códigos dos processos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "instancia",
+        "descricao": "Uma dessas c(\"PG\",\"SG\",\"CR\"), primeiro grau, segundo grau, colégio",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde armazenar os jsons.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Arquivo json",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_partes_docs.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_partes_docs.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_sentenca_cjpg",
+    "descricao": "Baixar julgados do banco de sentenças em pdf em pdf",
+    "parametros": [
+      {
+        "nome": "cd_doc",
+        "descricao": "Código da sentença obtido de tjsp_ler_cjpg",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde armazenar os arquivos",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "pdf",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_sentenca_cjpg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_sentenca_cjpg.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_tabela_cd_processo",
+    "descricao": "Baixa tabela de documentos com base no cd_processo",
+    "parametros": [
+      {
+        "nome": "cd_processo",
+        "descricao": "Número do processo",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde armazenar as tabelas",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "html",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_tabela_cd_processo.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_tabela_cd_processo.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_tabela_cpopg_docs",
+    "descricao": "Baixa tabela de documentos dos processos do TJSP",
+    "parametros": [
+      {
+        "nome": "processos",
+        "descricao": "Número do processo",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde armazenar as tabelas",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "html",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_tabela_cpopg_docs.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_tabela_cpopg_docs.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_tabela_cposg_docs",
+    "descricao": "Baixa tabelas dos documentos do processo",
+    "parametros": [
+      {
+        "nome": "processos",
+        "descricao": "Número do processo",
+        "tipo_r": "integer",
+        "tipo_python": "int"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "html",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_tabela_cposg_docs.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_tabela_cposg_docs.R"
+    }
+  },
+  {
+    "nome": "tjsp_classificar_recurso",
+    "descricao": "Classifica recursos",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "vetor de julgados",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      }
+    ],
+    "retorno": {
+      "descricao": "decisão",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_classificar_recurso.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_classificar_recurso.R"
+    }
+  },
+  {
+    "nome": "tjsp_classificar_sentenca",
+    "descricao": "Classifica decisões de primeiro grau",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "vetor de sentenças",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      }
+    ],
+    "retorno": {
+      "descricao": "decisão",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_classificar_sentenca.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_classificar_sentenca.R"
+    }
+  },
+  {
+    "nome": "tjsp_classificar_writ",
+    "descricao": "Classificar writs(HC, MS, revisão criminal)",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "Texto da decisão",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "classificação",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_classificar_writ.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_classificar_writ.R"
+    }
+  },
+  {
+    "nome": "tjsp_combinar_docs",
+    "descricao": "Combina docs baixados com tjsp_baixar_docs",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "dir_origem",
+        "descricao": "Diretório de origem, se não informar arquivos",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "dir_destino",
+        "descricao": "Diretório destino",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "nivel",
+        "descricao": "Juntar processo inteiro ou por documento?",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "forcar",
+        "descricao": "Padrão para TRUE. Documentos inválidos são excluídos",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "Pdf(s) combinado(s)",
+      "tipo_r": "list",
+      "tipo_python": "list"
+    },
+    "source": {
+      "arquivo": "R/tjsp_combinar_docs.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_combinar_docs.R"
+    }
+  },
+  {
+    "nome": "tjsp_combinar_docs_cd_processo",
+    "descricao": "Combina docs baixados com tjsp_baixar_docs_cd_processo",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "dir_origem",
+        "descricao": "Diretório de origem, se não informar arquivos",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "dir_destino",
+        "descricao": "Diretório destino",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "nivel",
+        "descricao": "Juntar processo inteiro ou por documento?",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "forcar",
+        "descricao": "Padrão para TRUE. Documentos inválidos são excluídos.",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "único pdf",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_combinar_docs_cd_processo.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_combinar_docs_cd_processo.R"
+    }
+  },
+  {
+    "nome": "tjsp_corrigir_varas",
+    "descricao": "Corrigir nomes das varas",
+    "parametros": [
+      {
+        "nome": "df",
+        "descricao": "data.frame com a coluna dos nomes da varas a serem corrigidas",
+        "tipo_r": "data.frame",
+        "tipo_python": "pandas.DataFrame"
+      },
+      {
+        "nome": "coluna",
+        "descricao": "nome da coluna",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "mesmo data.frame adicionado da coluna vara2",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_corrigir_varas.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_corrigir_varas.R"
+    }
+  },
+  {
+    "nome": "tjsp_baixar_tabela_cpopg_docs",
+    "descricao": "Baixa tabela de documentos dos processos do TJSP",
+    "parametros": [
+      {
+        "nome": "processos",
+        "descricao": "Número do processo",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde armazenar as tabelas",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "html",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_tabela_cpopg_docs.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_tabela_cpopg_docs.R"
+    }
+  },
+  {
+    "nome": "tjsp_intimacoes_foros",
+    "descricao": "Extrai foros e respectivos códigos da página de intimações do Esaj.",
+    "parametros": [],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_intimacoes_foros.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_intimacoes_foros.R"
+    }
+  },
+  {
+    "nome": "tjsp_intimacoes_varas",
+    "descricao": "Obtêm códigos das varas a partir do código do foro.",
+    "parametros": [
+      {
+        "nome": "codigo_foro",
+        "descricao": "Código do foro obtido com tjsp_intimacoes_foros",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_intimacoes_varas.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_intimacoes_varas.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_acordaos_cjsg",
+    "descricao": "Ler acórdãos baixados com tjsp_baixar_acordao_cjsg",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Arquivos dos pdfs",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Informar se não informar arquivos",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "remover_assinatura",
+        "descricao": "Remover assinatura digital?",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "combinar",
+        "descricao": "Combinar as páginas em uma",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_acordaos_cjsg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_acordaos_cjsg.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_cjpg",
+    "descricao": "Lê decisões de primeira instância do TJSP baixadas por meio da função tjsp_baixar_cjpg.",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Se NULL, informar diretorio",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "objeto ou diretório onde se encontram as páginas.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "uma tibble com nove colunas: processo, classe, assunto, magistrado, comarca, foro, vara, disponibilizacao e julgado (texto da decisão).",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_cjpg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_cjpg.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_cjsg",
+    "descricao": "Ler metadados das decisões",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Caminhos para os htmls",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde se encontram os htmls, se arquivos for NULL.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tabela com metadados jurisprudenciais.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_cjsg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_cjsg.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_cpopg_par",
+    "descricao": "Lê busca por paramêtro diferente do processo",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Alternativa aos arquivos",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_cpopg_par.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_cpopg_par.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_cpopg_partes_docs",
+    "descricao": "Lê dados das partes baixados com tjsp_baixar_cpopg_partes_docs",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório se não forem informados os arquivos",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "rm_listas",
+        "descricao": "Remover colunas listas? Geralmente estão vazias.",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "rm_na",
+        "descricao": "Remover colunas em todas as linhas são NA?",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "Tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_cpopg_partes_docs.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_cpopg_partes_docs.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_dados_cpopg",
+    "descricao": "Extrai a tabela de incidentes",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "se não informados, informar diretório",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "objeto ou diretorio  onde se encontram os htmls",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "wide",
+        "descricao": "Colocar em formato wide? Padrão TRUE",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_dados_cpopg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_dados_cpopg.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_dados_cposg",
+    "descricao": "Lê metadados dos processos de segunda instância",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos. Se NULL, informar diretório.",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde se encontram os htmls. Informar apenas se os arquivos não forem informados.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "wide",
+        "descricao": "TRUE para colocar em formato largo.",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "tabela com dados do processo",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_dados_cposg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_dados_cposg.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_decisoes_cposg",
+    "descricao": "Lê o dispositivo das decisões de segunda instância a partir dos htmls",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Informar arquivos ou diretório.",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde se encontram os htmls baixados",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble com as os numéros dos processos e respectivos dispositivos",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/ler_decisoes_cposg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/ler_decisoes_cposg.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_dispositivo",
+    "descricao": "Ler dispositivo do cposg",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretorio se não informar arquivos",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_dispositivo.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_dispositivo.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_documentos",
+    "descricao": "Lê documentos baixados combinados com tjsp_combinar_docs",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Alternativamente informar diretorio",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "remover_assinatura",
+        "descricao": "Remover assinatura? TRUE default",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "combinar",
+        "descricao": "Combinar o vetor em um documento? TRUE defalt",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "remover_cabecalho",
+        "descricao": "Remover o cabeçalho? TRUE default",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_documentos.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_documentos.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_documentos_cd_processo",
+    "descricao": "Lê documentos baixados combinados com tjsp_combinar_docs",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Alternativamente informar diretorio",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "remover_assinatura",
+        "descricao": "Remover assinatura? TRUE default",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "combinar",
+        "descricao": "Combinar o vetor em um documento? TRUE default",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "remover_cabecalho",
+        "descricao": "Remover o cabeçalho? TRUE default",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_documentos_cd_processo.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_documentos_cd_processo.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_historico_classes",
+    "descricao": "Extrai o histórico das classes processuais",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "se não informados, informar diretório",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "objeto ou diretorio  onde se encontram os htmls",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble com alterações das classes processuais",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_historico_classes.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_historico_classes.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_intimacoes",
+    "descricao": "Lê csv baixado com tjsp_baixar_intimacoes",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Alternativamente, informar diretório.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_intimacoes_csv.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_intimacoes_csv.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_intimacoes_xml",
+    "descricao": "Ler intimações em xml",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório como alternativa.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_intimacoes_xml.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_intimacoes_xml.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_movimentacao",
+    "descricao": "Extrai a movimentação processual de primeira e de segunda instância",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "se não informados, informar diretório",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "objeto ou diretorio onde se encontram os htmls",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble com a movimentação processual.",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_movimentacao.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_movimentacao.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_partes",
+    "descricao": "Ler Partes do cpopg ou cposg, quando baixados por número do processo.",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório se não informar arquivos",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_partes.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_partes.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_partes_cd_processo",
+    "descricao": "Ler Partes do cpopg ou cposg, quando baixados por cd_processo.",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório se não informar arquivos",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_partes_cd_processo.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_partes_cd_processo.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_peticoes",
+    "descricao": "Ler petições e outros dosc baixadas com tjsp_baixar_docs",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "remover_assinatura",
+        "descricao": "Remover assinatura, dafault para TRUE",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "combinar",
+        "descricao": "Juntar as páginas numa única string. Default para TRUE",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_peticoes.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_peticoes.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_peticoes_diversas",
+    "descricao": "Extrai tabela de petições diversas da busca cpopg",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "se não informados, informar diretório",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "objeto ou diretorio  onde se encontram os htmls",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble com nomes das petições e datas",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_peticoes_diversas.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_peticoes_diversas.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_sentencas_cjpg",
+    "descricao": "Lê pdfs das sentenças, remove assinatura e eventualmente combina",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Arquivos onde se encontram os pdfs",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde se encontram os pdffs (alternativa a arquivos)",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "remover_assinatura",
+        "descricao": "Padrão para FALSE",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      },
+      {
+        "nome": "combinar",
+        "descricao": "Default para TRUE. Juntar todas as página num único texto",
+        "tipo_r": "logical",
+        "tipo_python": "bool"
+      }
+    ],
+    "retorno": {
+      "descricao": "Tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_sentencas_cjpg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_sentencas_cjpg.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_tabela_docs",
+    "descricao": "Ler tabelas baixadas com tjsp_baixar_tabela_docs",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Informar se não informar diretório",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_tabela_docs.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_tabela_docs.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_tabela_docs_cd_processo",
+    "descricao": "Ler tabelas baixadas com tjsp_baixar_tabela_docs",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "Vetor de arquivos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Informar se não informar diretório",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_tabela_docs_cd_processo.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_tabela_docs_cd_processo.R"
+    }
+  },
+  {
+    "nome": "tjsp_ler_tabela_incidentes",
+    "descricao": "Extrai a tabela de incidentes",
+    "parametros": [
+      {
+        "nome": "arquivos",
+        "descricao": "se não informados, informar diretório",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "objeto ou diretorio onde se encontram os htmls",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Tibble com urls dos incidentes",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_ler_tabela_incidentes.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_ler_tabela_incidentes.R"
+    }
+  },
+  {
+    "nome": "tjsp_obter_cposg_oab",
+    "descricao": "Obter processos de segunda instância pela oab",
+    "parametros": [
+      {
+        "nome": "oab",
+        "descricao": "Número da OAB",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      }
+    ],
+    "retorno": {
+      "descricao": "Tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_obter_cposg_oab.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_obter_cposg_oab.R"
+    }
+  },
+  {
+    "nome": "tjsp_obter_cposg_por_adv",
+    "descricao": "Obter lista de processos do advogado por nome do adv",
+    "parametros": [
+      {
+        "nome": "nome",
+        "descricao": "Nome do advogado",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      }
+    ],
+    "retorno": {
+      "descricao": "Tibble",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_obter_cposg_por_adv.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_obter_cposg_por_adv.R"
+    }
+  },
+  {
+    "nome": "tjsp_obter_valor_max",
+    "descricao": "Obtêm valor máximo do julgado",
+    "parametros": [
+      {
+        "nome": "julgado",
+        "descricao": "Julgado ou trecho do julgao de interesse",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Valor",
+      "tipo_r": "numeric",
+      "tipo_python": "float"
+    },
+    "source": {
+      "arquivo": "R/tjsp_obter_valor_max.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_obter_valor_max.R"
+    }
+  },
+  {
+    "nome": "tjsp_parsear_distribuicao",
+    "descricao": "Extrai data e horário da distribuicao",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "Coluna distribuicao",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "data horário no formato yyymmddHHMMSS (Posixct)",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_parsear_distribuicao.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_parsear_distribuicao.R"
+    }
+  },
+  {
+    "nome": "tjsp_partes_credenciais",
+    "descricao": "Cria variáveis de embiente temporárias para o usuário esaj.",
+    "parametros": [
+      {
+        "nome": "cd_usuario",
+        "descricao": "Código do usuário. Aceita envvar ESAJ_CD_USUARIO.",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "usuario_solicitante",
+        "descricao": "Código do solicitante. Aceita envvar ESAJ_USUARIO_SOLICITANTE.",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "documento_usuario",
+        "descricao": "CPF ou CNPJ do usuário. Aceita envvar ESAJ_DOCUMENTO_USUARIO.",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "cd_perfil",
+        "descricao": "Perfil do usuário. Aceita envvar ESAJ_CD_PERFIL",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      }
+    ],
+    "retorno": {
+      "descricao": "Arquivo json",
+      "tipo_r": "NULL",
+      "tipo_python": "None"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_partes_docs.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_partes_docs.R"
+    }
+  },
+  {
+    "nome": "tjsp_pet_dados",
+    "descricao": "Baixa informações sobre as partes",
+    "parametros": [
+      {
+        "nome": "processo",
+        "descricao": "Vetor com os códigos dos processos",
+        "tipo_r": "list",
+        "tipo_python": "list"
+      },
+      {
+        "nome": "instancia",
+        "descricao": "Uma dessas c(\"PG\",\"SG\",\"CR\"), primeiro grau, segundo grau, colégio",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Diretório onde armazenar os jsons.",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Arquivo json",
+      "tipo_r": "character",
+      "tipo_python": "str"
+    },
+    "source": {
+      "arquivo": "R/tjsp_pet_dados.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_pet_dados.R"
+    }
+  },
+  {
+    "nome": "tjsp_quantidade",
+    "descricao": "Calcula quantidade de processos distribuídos por fórum",
+    "parametros": [
+      {
+        "nome": "inicio",
+        "descricao": "Número inicial da sequência. Depende muito do distribuidor e da classe processual.",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "fim",
+        "descricao": "Inteiro grande o suficiente",
+        "tipo_r": "integer",
+        "tipo_python": "int"
+      },
+      {
+        "nome": "ano",
+        "descricao": "Ano",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "distribuidor",
+        "descricao": "Verifique os códigos em codigos2",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      },
+      {
+        "nome": "diretorio",
+        "descricao": "Um diretório vazio para downloads provisórios",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "vetor",
+      "tipo_r": "list",
+      "tipo_python": "list"
+    },
+    "source": {
+      "arquivo": "R/tjsp_quantidade.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_quantidade.R"
+    }
+  },
+  {
+    "nome": "tjsp_varas",
+    "descricao": "Lista varas e distribuidores do tjsp",
+    "parametros": [],
+    "retorno": {
+      "descricao": "dataframe",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tjsp_varas.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_varas.R"
+    }
+  },
+  {
+    "nome": "tjsp_votacao",
+    "descricao": "Cria vetor informando se o voto por por unanimidade ou por maioria",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "Vetor de dispositivos",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      }
+    ],
+    "retorno": {
+      "descricao": "Vetor",
+      "tipo_r": "list",
+      "tipo_python": "list"
+    },
+    "source": {
+      "arquivo": "R/tjsp_votacao.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_votacao.R"
+    }
+  },
+  {
+    "nome": "tpu",
+    "descricao": "Tabelas processuais unificadas do CNJ",
+    "parametros": [],
+    "retorno": {
+      "descricao": "dataframe com 7755 obs e 5 colunas:",
+      "tipo_r": "data.frame",
+      "tipo_python": "pandas.DataFrame"
+    },
+    "source": {
+      "arquivo": "R/tpu.R",
+      "url": "https://www.cnj.jus.br/sgt/consulta_publica_classes.php"
+    }
+  },
+  {
+    "nome": "verificar_datas",
+    "descricao": "Verifica se está tudo ok com as datas.",
+    "parametros": [
+      {
+        "nome": "inicio",
+        "descricao": "Data inicial de julgamento",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "fim",
+        "descricao": "Data final de julgamento",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "inicio_pb",
+        "descricao": "Data inicial de publicação",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      },
+      {
+        "nome": "fim_pb",
+        "descricao": "Data final de publicação",
+        "tipo_r": "character",
+        "tipo_python": "str"
+      }
+    ],
+    "retorno": {
+      "descricao": "Retorna TRUE se tem algo errado.",
+      "tipo_r": "logical",
+      "tipo_python": "bool"
+    },
+    "source": {
+      "arquivo": "R/tjsp_baixar_cjsg.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_baixar_cjsg.R"
+    }
+  },
+  {
+    "nome": "tjsp_votacao",
+    "descricao": "Cria vetor informando se o voto por por unanimidade ou por maioria",
+    "parametros": [
+      {
+        "nome": "x",
+        "descricao": "Vetor de dispositivos",
+        "tipo_r": "NULL",
+        "tipo_python": "None"
+      }
+    ],
+    "retorno": {
+      "descricao": "Vetor",
+      "tipo_r": "default",
+      "tipo_python": "Any"
+    },
+    "source": {
+      "arquivo": "R/tjsp_votacao.R",
+      "url": "https://github.com/jjesusfilho/tjsp/blob/HEAD/R/tjsp_votacao.R"
+    }
+  }
+]
