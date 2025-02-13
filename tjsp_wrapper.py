@@ -35,6 +35,6 @@ class TJSPWrapper:
             *params:
             livre: tema para buscar livre
         """
-        baixar_func = robjects.r("baixar_cjsg")
+        baixar_func = robjects.r("tjsp_baixar_cjsg")
         resultado = baixar_func(livre, diretorio)
         return resultado
